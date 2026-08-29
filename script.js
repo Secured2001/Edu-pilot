@@ -210,4 +210,16 @@ document.addEventListener('DOMContentLoaded', () => {
       link.classList.remove('active');
     }
   });
+
+  document.querySelectorAll('.client-logo-placeholder img').forEach(img => {
+    if (!img.getAttribute('src')) {
+      const label = document.createElement('p');
+      label.textContent = img.getAttribute('alt') || 'Add logo image URL';
+      img.parentElement.appendChild(label);
+    } else {
+      img.addEventListener('error', () => {
+        img.style.display = 'none';
+      });
+    }
+  });
 });
